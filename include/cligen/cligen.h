@@ -55,23 +55,23 @@ typedef void *cligen_handle; /* API */
 extern "C" {
 #endif
     
-#include <cligen/cligen_buf.h>
-#include <cligen/cligen_cv.h>
-#include <cligen/cligen_cvec.h>
-#include <cligen/cligen_parsetree.h>
-#include <cligen/cligen_pt_head.h>
-#include <cligen/cligen_callback.h>
-#include <cligen/cligen_object.h>
-#include <cligen/cligen_handle.h>
-#include <cligen/cligen_print.h>
-#include <cligen/cligen_result.h>
-#include <cligen/cligen_read.h>
-#include <cligen/cligen_io.h>
-#include <cligen/cligen_expand.h>
-#include <cligen/cligen_syntax.h>
-#include <cligen/cligen_util.h>
-#include <cligen/cligen_regex.h>
-#include <cligen/cligen_history.h>
+#include "cligen_buf.h"
+#include "cligen_cv.h"
+#include "cligen_cvec.h"
+#include "cligen_parsetree.h"
+#include "cligen_pt_head.h"
+#include "cligen_callback.h"
+#include "cligen_object.h"
+#include "cligen_handle.h"
+#include "cligen_print.h"
+#include "cligen_result.h"
+#include "cligen_read.h"
+#include "cligen_io.h"
+#include "cligen_expand.h"
+#include "cligen_syntax.h"
+#include "cligen_util.h"
+#include "cligen_regex.h"
+#include "cligen_history.h"
 
 #ifdef __cplusplus
 } /* extern "C" */

@@ -1,0 +1,28 @@
+# these are necessary because the integration tests are run under "sh -c" in order to provide stdin through a pipeline
+# and the busybox implemention of "sh" apparently has a few leaks.
+{
+   <busybox>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   obj:/bin/busybox
+   ...
+}
+{
+   <busybox>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:realloc
+   obj:/bin/busybox
+   ...
+}
+
+# uncertain about this one; it also happens under alpine linux within docker, but all the callers are optimized out.
+#{
+#   <dunno>
+#   Memcheck:Leak
+#   match-leak-kinds: reachable
+#   fun:malloc
+#   fun:strdup
+#   ...
+#}

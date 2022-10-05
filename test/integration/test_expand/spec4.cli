@@ -1,0 +1,13 @@
+prompt="cli> ";              # Assignment of prompt
+comment="#";                 # Same comment as in syntax
+treename="example";          # Name of syntax (used when referencing)
+
+# Expand example using cligen_file special expand functions that give different sets
+
+abbb("First command"), callback();
+accc("Second command"), callback();
+ x {
+  b, callback();
+  <c:int32>, callback();
+ }
+ za zb zc, callback();

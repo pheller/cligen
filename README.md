@@ -13,7 +13,7 @@ write callback functions where you call the right library
 routines. The callback functions add the semantics, that is, what the
 commands in the CLI are supposed to do. 
 
-The main documentation is the [cligen tutorial](cligen_tutorial.pdf)
+The main documentation is the [cligen tutorial](docs/cligen_tutorial.pdf)
 which is usually kept up-to-date and is probably the best way to
 understand CLIgen.
 
@@ -39,7 +39,7 @@ The source builds a single library. If you build applications, you should includ
 There are several example applications:
 * cligen_hello Simplest possible. Just builds a 'hello world' greeting by in-line C
 * cligen_file Read a syntax specification from file. You must supply the file.
-* cligen_tutorial Samples of techniques used in [cligen_tutorial.pdf](cligen_tutorial.pdf)
+* cligen_tutorial Samples of techniques used in [cligen_tutorial.pdf](docs/cligen_tutorial.pdf)
 
 See also [Changelog](CHANGELOG.md).
 

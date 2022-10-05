@@ -8,7 +8,6 @@ cligen_config.h
 Makefile
 config.log
 config.status
-cligen
 cligen_hello
 cligen_file
 cligen_tutorial
@@ -43,3 +42,8 @@ test/config.sh
 *.exe
 *.out
 *.app
+
+.idea
+.github
+
+cmake-build*

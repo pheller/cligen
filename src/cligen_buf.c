@@ -59,7 +59,7 @@
 #include <errno.h>
 
 #include "cligen_buf.h"              /* External API */
-#include "cligen_buf_internal.h"            
+#include "cligen_buf_internal.h"
 
 /*
  * Variables

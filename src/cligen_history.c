@@ -73,7 +73,7 @@
 #include "cligen_getline.h"
 #include "cligen_handle_internal.h"
 
-#include "cligen_history_internal.h" 
+#include "cligen_history_internal.h"
 #include "cligen_history.h"
 
 /*! Makes a copy of the string 

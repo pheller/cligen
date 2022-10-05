@@ -1,0 +1,3 @@
+/* This file is generated from the CLIgen Makefile */
+const char CLIGEN_BUILDSTR[${build_message_len}]="${build_message}";
+const char CLIGEN_VERSION[64]="@cligen_VERSION_MAJOR@.@cligen_VERSION_MINOR@.@cligen_VERSION_PATCH@";

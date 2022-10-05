@@ -1,0 +1,6 @@
+get_filename_component(_dir "cligen-config.cmake.in" PATH)
+get_filename_component(_prefix "${_dir}/../.." ABSOLUTE)
+
+include("${_prefix}/lib/cligen-@PROJECT_VERSION@/cligen-targets.cmake")
+
+set(cligen_INCLUDE_DIRS "${_prefix}/include/cligen-@PROJECT_VERSION@")
