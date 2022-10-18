@@ -1,8 +1,0 @@
-  prompt="cli> ";              # Assignment of prompt
-  comment="#";                 # Same comment as in syntax
-  treename="tutorial";         # Name of syntax (used when referencing)
-
-  bac;
-  abc,callback();{
-    <s:rest>, callback();
-  }

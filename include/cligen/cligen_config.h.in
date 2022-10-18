@@ -6,7 +6,7 @@
 #cmakedefine01 CLIGEN_REGFD
 
 /* Experimental CLIGEN sub-modes */
-#undef CLIGEN_SUBMODE
+#cmakedefine01 CLIGEN_SUBMODE
 
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
@@ -15,10 +15,10 @@
 #undef HAVE_LIBSOCKET
 
 /* Define to 1 if you have the `xml2' library (-lxml2). */
-#undef HAVE_LIBXML2
+#cmakedefine01 HAVE_LIBXML2
 
 /* Define to 1 if you have the <libxml/xmlregexp.h> header file. */
-#undef HAVE_LIBXML_XMLREGEXP_H
+#cmakedefine01 HAVE_LIBXML_XMLREGEXP_H
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H

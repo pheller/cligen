@@ -1,4 +1,0 @@
-add_subdirectory(test_commands)
-add_subdirectory(test_comment)
-add_subdirectory(test_completion)
-add_subdirectory(test_expand)

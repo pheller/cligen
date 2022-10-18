@@ -18,11 +18,10 @@
 }
 
 # uncertain about this one; it also happens under alpine linux within docker, but all the callers are optimized out.
-#{
-#   <dunno>
-#   Memcheck:Leak
-#   match-leak-kinds: reachable
-#   fun:malloc
-#   fun:strdup
-#   ...
-#}
+{
+   <musl>
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:malloc
+   fun:strdup
+}

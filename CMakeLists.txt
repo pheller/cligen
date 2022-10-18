@@ -30,23 +30,25 @@ include(CheckSymbolExists)
 include(CheckFunctionExists)
 include(CheckIncludeFile)
 
+option(CLIGEN_BUILD_EXAMPLES "Build Cligen Examples." ON)
+option(CLIGEN_BUILD_TESTS "Build Cligen Tests." ON)
+option(BUILD_SHARED_LIBS "Build shared libraries (.so) instead of static ones (.a)" ON)
 option(CLIGEN_REGFD "Enable BSD select semantics." ON)
 option(CLIGEN_SUBMODE "Experimental CLIGEN sub-modes." OFF)
 option(WITH_LIBXML2 "use gnome/libxml2 regex engine" ON)
 if (WITH_LIBXML2)
     find_package(LibXml2)
+    if(LibXml2_FOUND)
+        set(HAVE_LIBXML2 true)
+    endif()
 
-    # this doesn't seem to work, even though the symbol does exist
-#    file(GLOB_RECURSE LIBXML2_INCLUDES ${LIBXML2_INCLUDE_DIR}/*.h)
-#    check_symbol_exists(xmlRegexpCompile ${LIBXML2_INCLUDES} HAVE_XMLREGEXP_H)
+    set(CMAKE_REQUIRED_INCLUDES ${LIBXML2_INCLUDE_DIR})
+    check_include_file(libxml/xmlregexp.h HAVE_LIBXML_XMLREGEXP_H)
 endif()
 
-option(CLIGEN_BUILD_EXAMPLES "Build Cligen Examples." ON)
-option(CLIGEN_BUILD_TESTS "Build Cligen Tests." ON)
-
-option(BUILD_SHARED_LIBS "Build shared libraries (.so) instead of static ones (.a)" ON)
-
-check_function_exists(strverscmp HAVE_STRVERSCMP)
+set(CMAKE_REQUIRED_DEFINITIONS -D_GNU_SOURCE)
+check_symbol_exists(strverscmp "string.h" HAVE_STRVERSCMP)
+unset(CMAKE_REQUIRED_DEFINITIONS)
 
 configure_file(src/build.c.in build.c)                  # contains the build_message constructed above
 configure_file(include/cligen/cligen_config.h.in cligen_config.h)  # contains all the compile-time defines for features, libraries, etc.
@@ -89,6 +91,11 @@ add_library(cligen SHARED
         ${FLEX_lexer_OUTPUTS}
         ${BISON_parser_OUTPUTS}
         )
+if(HAVE_LIBXML2)
+    target_link_libraries(cligen ${LIBXML2_LIBRARIES})
+    target_include_directories(cligen PRIVATE ${LIBXML2_INCLUDE_DIR})
+endif()
+
 set_target_properties(cligen PROPERTIES POSITION_INDEPENDENT_CODE ${BUILD_SHARED_LIBS} VERSION ${PROJECT_VERSION})
 
 include_directories(${PROJECT_BINARY_DIR})
@@ -148,8 +155,6 @@ install(FILES
         )
 
 if(CLIGEN_BUILD_EXAMPLES)
-#    include_directories(${CMAKE_CURRENT_SOURCE_DIR}/..)     # this presumes the current directory is named "cligen"
-                                                            # better would be to reorganize the source directories
     add_executable(cligen_hello examples/cligen_hello.c)
     target_link_libraries(cligen_hello cligen)
 
@@ -170,6 +175,7 @@ endif()
 set(CPACK_BINARY_STGZ "OFF")
 set(CPACK_BINARY_TZ "OFF")
 set(CPACK_BINARY_RPM "ON")
+set(CPACK_BINARY_DEB "ON")
 set(CPACK_SOURCE_TBZ2 "OFF")
 set(CPACK_SOURCE_TXZ "OFF")
 set(CPACK_SOURCE_RPM "ON")
@@ -182,6 +188,10 @@ set(CPACK_PACKAGE_VENDOR "clicon")
 set(CMAKE_PROJECT_HOMEPAGE_URL "http://www.cligen.se")
 
 set(CPACK_RPM_COMPONENT_INSTALL ON)
+set(CPACK_RPM_FILE_NAME RPM-DEFAULT)
+set(CPACK_RPM_POST_INSTALL_SCRIPT_FILE "ldconfig")
+set(CPACK_RPM_POST_UNINSTALL_SCRIPT_FILE "ldconfig")
+
 set(CPACK_RPM_MAIN_COMPONENT "runtime")
 set(CPACK_RPM_PACKAGE_LICENSE "ASL 2.0 or GPLv2")
 set(CPACK_RPM_PACKAGE_GROUP "System Environment/Libraries")
@@ -189,6 +199,9 @@ set(CPACK_RPM_PACKAGE_GROUP "System Environment/Libraries")
 set(CPACK_RPM_DEV_PACKAGE_SUMMARY "CLIGEN header files")
 set(CPACK_RPM_DEV_PACKAGE_GROUP "Development/Libraries")
 set(CPACK_RPM_BUILDREQUIRES "flex, bison")
+
+set(CPACK_DEB_COMPONENT_INSTALL ON)
+set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
 
 # TODO this doesn't seem to work.
 set(CPACK_SOURCE_IGNORE_FILES "/\\\\.DS_Store/;.editorconfig;.git/;.github/;.gitignore;/\\\\.idea/;build/;cmake-build.*/;local-build/")

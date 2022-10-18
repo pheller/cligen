@@ -52,6 +52,9 @@ static void test_cbuf_create_destroy(void **state) {
     assert_true(cbuf_append_buf(cb1, cbuf_get(cb2), 99) == 0);
     assert_true(strcmp(cbuf_get(cb1), "foobar 123") == 0);
 
+    cbuf_free(cb1);
+    cbuf_free(cb2);
+
 }
 
 int main(void) {

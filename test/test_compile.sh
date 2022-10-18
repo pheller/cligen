@@ -10,6 +10,8 @@ s="$_" ; . ./lib.sh || if [ "$s" = $0 ]; then exit 0; else return 0; fi
 app=$dir/example-api
 cfile=${app}.c
 
+ls /tmp/cligen/cmake-build-debug-cligen-builder
+
 cat<<EOF > $cfile
 #include <stdio.h>
 #include <string.h>
@@ -160,7 +162,8 @@ newtest "compile $cfile"
 if [ "$LINKAGE" = static ]; then
     COMPILE="$CC -DHAVE_CONFIG_H -g -Wall $CFLAGS -I /usr/local/include $cfile ../libcligen.a -o $app"
 else
-    COMPILE="$CC -DHAVE_CONFIG_H -g -Wall $CFLAGS -I /usr/local/include $cfile -L/usr/local/lib -lcligen -o $app"
+    #COMPILE="$CC -DHAVE_CONFIG_H -g -Wall $CFLAGS -I /usr/local/include $cfile -L/usr/local/lib -lcligen -o $app"
+    COMPILE="$CC -DHAVE_CONFIG_H -g -Wall $CFLAGS $cfile $LDFLAGS -o $app"
 fi
 echo "COMPILE:$COMPILE"
 expectpart "$($COMPILE)" 0 ""

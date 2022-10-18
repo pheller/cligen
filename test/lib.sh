@@ -66,13 +66,13 @@ testname=
 
 # Follow the binary programs that can be parametrized (eg with valgrind)
 
-: ${cligen_file:=cligen_file}
+: ${cligen_file:=../cligen_file}
 
-: ${cligen_tutorial:=cligen_tutorial}
+: ${cligen_tutorial:=../cligen_tutorial}
 
-: ${cligen_hello:=cligen_hello}
+: ${cligen_hello:=../cligen_hello}
 
-dir=/var/tmp/$0
+dir=${testfile}
 if [ ! -d $dir ]; then
     mkdir $dir
 fi
